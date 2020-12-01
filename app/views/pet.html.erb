@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/style/style.css?v=001" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Tamagotchi</title>
+  </head>
+
+  <body class="text-center">
+    <div class="container">
+      <strong><%= @pet.name %></strong>
+      <p class="name alert alert-success"><%= @pet.speak %></p>
+      <div class="param-block">
+        <div class="params">
+
+          <label>Health</label>
+          <div class="progress">
+            <div class="progress-bar bg-danger text-center" role="progressbar"
+                 style="width: <%= @pet.params[:health] %>%;"
+                 aria-valuenow="<%= @pet.params[:health] %>"
+                 aria-valuemin="0" aria-valuemax="100">
+              <%= @pet.params[:health] %>
+            </div>
+          </div>
+
+          <label>Fullness</label>
+          <div class="progress">
+            <div class="progress-bar bg-warning text-center" role="progressbar"
+                 style="width: <%= @pet.params[:appetite] %>%;"
+                 aria-valuenow="<%= @pet.params[:appetite] %>"
+                 aria-valuemin="0" aria-valuemax="100">
+              <%= @pet.params[:appetite] %>
+            </div>
+          </div>
+
+          <label>Happiness</label>
+          <div class="progress">
+            <div class="progress-bar bg-success text-center" role="progressbar"
+                 style="width: <%= @pet.params[:happiness] %>%;"
+                 aria-valuenow="<%= @pet.params[:happiness] %>"
+                 aria-valuemin="0" aria-valuemax="100">
+              <%= @pet.params[:happiness] %>
+            </div>
+          </div>
+
+          <label>Thirst</label>
+          <div class="progress">
+            <div class="progress-bar bg-info text-center" role="progressbar"
+                 style="width: <%= @pet.params[:thirst] %>%;"
+                 aria-valuenow="<%= @pet.params[:thirst] %>"
+                 aria-valuemin="0" aria-valuemax="100">
+              <%= @pet.params[:thirst] %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="img-wrapper">
+          <img class="img" src="/images/<%= @pet.image %>" alt="<%= @pet.name %>"/>
+        </div>
+
+      </div>
+
+      <div class="btn-toolbar" style="display: <%= @pet.dreams ? 'none': 'flex' %>">
+        <form method="post" action="play">
+          <button type="submit" name="play" class="btn btn-outline-primary mr-2">Play</button>
+        </form>
+
+        <form method="post" action="eat">
+          <button type="submit" name="eat" class="btn btn-outline-primary mr-2">Eat</button>
+        </form>
+
+        <form method="post" action="drink">
+          <button type="submit" name="drink" class="btn btn-outline-primary mr-2">Drink</button>
+        </form>
+
+        <form method="post" action="heal"
+              style="display: <%= (@pet.params[:health] <= 50 || @pet.params[:happiness] <= 50 )? 'inline' : 'none' %>">
+          <button type="submit" name="heal" class="btn btn-outline-primary mr-2">Heal</button>
+        </form>
+
+        <form method="post" action="sleep"
+              style="display: inline">
+          <button type="submit" name="heal" class="btn btn-outline-primary mr-2">Sleep</button>
+        </form>
+      </div>
+
+        <form method="post" action="awake"
+              style="display: <%= @pet.dreams ? 'inline' : 'none' %>">
+          <button type="submit" name="awake" class="btn btn-outline-primary mr-2">Awake</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+<!--<img src="/images/<%#= @pet.dreams ? '3' : (@pet.params[:health] <= 50 || @pet.params[:happiness] <= 50 ) ? '2' : '1' %>.jpg"-->
+<!--     align="<%#= @pet.name %>"/>-->

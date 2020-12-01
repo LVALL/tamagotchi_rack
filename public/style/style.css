@@ -1,0 +1,29 @@
+.container {
+    width: 70%!important;
+    padding: 5%!important;
+}
+
+.param-block {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.params {
+    width: 50%;
+    margin-bottom: 20px;
+}
+
+.btn-toolbar {
+    padding: 20px;
+    justify-content: center!important;
+}
+
+.img-wrapper {
+    max-width: 300px;
+    height: auto;
+}
+
+.img {
+    width: 100%;
+}
